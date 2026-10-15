@@ -4,75 +4,550 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DevSidraChain</title>
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="DevSidraChain — Explore blockchain technology, Web3 applications, and the SidraChain ecosystem.">
+  <title>DevSidraChain | Building the Future of Web3</title>
 
   <style>
+    :root {
+      --bg: #07111f;
+      --panel: #0d1b2e;
+      --text: #f2f7ff;
+      --muted: #9aacc4;
+      --blue: #52c7ff;
+      --purple: #9b8cff;
+      --border: rgba(148, 180, 220, .17);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
     body {
       margin: 0;
-      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(7, 17, 31, .93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      min-height: 72px;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      background: #101827;
-      color: white;
-      font-family: Arial, sans-serif;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      text-decoration: none;
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+
+    .brand span { color: var(--blue); }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    nav a:hover { color: var(--blue); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 105px 0 95px;
       text-align: center;
-      padding: 20px;
-      box-sizing: border-box;
+      background:
+        radial-gradient(ellipse at 50% 10%,
+          rgba(57, 131, 255, .20), transparent 55%);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 13px;
+      border: 1px solid rgba(82, 199, 255, .35);
+      border-radius: 30px;
+      color: var(--blue);
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
     }
 
     h1 {
-      color: #38bdf8;
-      font-size: 34px;
+      margin: 24px auto 18px;
+      max-width: 850px;
+      font-size: clamp(38px, 7vw, 72px);
+      line-height: 1.08;
+      letter-spacing: -2px;
     }
 
-    p {
-      color: #cbd5e1;
-      margin-bottom: 30px;
+    .gradient {
+      color: var(--blue);
+      background: linear-gradient(90deg, #52c7ff, #a99aff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .ecosystem-button {
-      display: inline-block;
-      padding: 16px 28px;
-      background: linear-gradient(135deg, #0ea5e9, #2563eb);
-      color: white;
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      min-height: 49px;
+      padding: 12px 22px;
+      border-radius: 10px;
       text-decoration: none;
-      font-size: 18px;
-      font-weight: bold;
-      border-radius: 12px;
-      box-shadow: 0 5px 20px #0005;
-      transition: transform 0.2s, opacity 0.2s;
+      font-weight: 700;
+      font-size: 14px;
+      transition: transform .2s, border-color .2s;
     }
 
-    .ecosystem-button:hover {
-      transform: translateY(-3px);
-      opacity: 0.9;
+    .button:hover { transform: translateY(-3px); }
+
+    .primary {
+      color: #061321;
+      background: linear-gradient(110deg, #52c7ff, #8cafff);
+    }
+
+    .secondary {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+
+    .section { padding: 75px 0; }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 38px;
+    }
+
+    .section-title h2 {
+      margin: 0 0 10px;
+      font-size: clamp(27px, 4vw, 39px);
+      line-height: 1.2;
+    }
+
+    .section-title p {
+      max-width: 620px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(
+        145deg, rgba(18, 37, 61, .95), rgba(10, 23, 40, .95)
+      );
+      transition: transform .2s, border-color .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(82, 199, 255, .5);
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border-radius: 13px;
+      color: var(--blue);
+      background: rgba(82, 199, 255, .10);
+      font-size: 24px;
+    }
+
+    .card h3 {
+      margin: 0 0 9px;
+      font-size: 18px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .about-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 38px;
+      padding: 38px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background:
+        radial-gradient(ellipse at top right,
+          rgba(110, 94, 255, .12), transparent 60%),
+        var(--panel);
+    }
+
+    .about-panel h2 {
+      margin: 0 0 14px;
+      font-size: 30px;
+      line-height: 1.25;
+    }
+
+    .about-panel p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .principles {
+      display: grid;
+      gap: 13px;
+    }
+
+    .principle {
+      padding: 15px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .principle strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--blue);
+    }
+
+    .principle span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .security {
+      max-width: 850px;
+      margin: auto;
+      padding: 25px;
+      border: 1px solid rgba(155, 140, 255, .3);
+      border-radius: 15px;
+      background: rgba(155, 140, 255, .06);
+    }
+
+    .security h3 { margin-top: 0; }
+
+    .security p, .security li {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .security ul { padding-left: 22px; }
+
+    .contact-box {
+      padding: 42px 24px;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: radial-gradient(
+        ellipse at 50% 0%, rgba(82,199,255,.11), transparent 70%
+      );
+    }
+
+    .contact-box h2 {
+      margin-top: 0;
+      font-size: 30px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      font-size: 14px;
     }
 
     footer {
-      margin-top: 45px;
-      color: #94a3b8;
-      font-size: 13px;
+      margin-top: 70px;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        padding: 13px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      nav {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+      }
+
+      .hero { padding: 75px 0 65px; }
+
+      h1 { letter-spacing: -1px; }
+
+      .grid { grid-template-columns: 1fr; }
+
+      .about-panel {
+        grid-template-columns: 1fr;
+        padding: 24px;
+      }
+
+      .section { padding: 55px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
     }
   </style>
 </head>
 
 <body>
-  <h1>Welcome to DevSidraChain</h1>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home">Dev<span>SidraChain</span></a>
 
-  <p>Building the future of Web3.</p>
+      <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#ecosystem">Ecosystem</a>
+        <a href="#about">About</a>
+        <a href="#security">Security</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-  <a
-    class="ecosystem-button"
-    href="http://169.58.127.36:8080"
-    target="_blank"
-    rel="noopener noreferrer">
-    Ecosystem SidraChain ↗
-  </a>
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <span class="eyebrow">Blockchain · Web3 · Innovation</span>
+
+        <h1>
+          Building the<br>
+          <span class="gradient">Future of Web3</span>
+        </h1>
+
+        <p>
+          Welcome to DevSidraChain — a project website dedicated to
+          exploring blockchain technology, decentralized applications,
+          and the evolving Web3 ecosystem.
+        </p>
+
+        <div class="actions">
+          <a class="button primary" href="#ecosystem">
+            Explore Ecosystem ↗
+          </a>
+
+          <a class="button secondary" href="#about">
+            Discover Our Vision
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ecosystem">
+      <div class="container">
+        <div class="section-title">
+          <h2>Explore the <span class="gradient">Ecosystem</span></h2>
+          <p>
+            Access the SidraChain ecosystem through the link below.
+            Review the destination before connecting a wallet or
+            approving any transaction.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="icon" aria-hidden="true">◈</div>
+            <h3>Blockchain Technology</h3>
+            <p>
+              Explore decentralized networks, digital assets,
+              and blockchain-based applications.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon" aria-hidden="true">⌘</div>
+            <h3>Web3 Applications</h3>
+            <p>
+              Discover how decentralized applications can connect
+              users with blockchain services.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon" aria-hidden="true">↗</div>
+            <h3>SidraChain Ecosystem</h3>
+            <p>
+              Visit the ecosystem interface to explore the services
+              available at the destination.
+            </p>
+          </article>
+        </div>
+
+        <div class="actions">
+          <a
+            class="button primary"
+            href="http://169.58.127.36:8080"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open SidraChain Ecosystem in a new tab">
+            Ecosystem SidraChain ↗
+          </a>
+        </div>
+
+        <p style="text-align:center;color:#9aacc4;font-size:12px;margin-top:15px">
+          The ecosystem link currently uses HTTP and a direct IP address.
+          Verify the destination before entering sensitive information.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="about-panel">
+          <div>
+            <span class="eyebrow">About DevSidraChain</span>
+            <h2>A Gateway to <span class="gradient">Web3</span></h2>
+            <p>
+              DevSidraChain is a web presence focused on blockchain
+              exploration and decentralized technology.
+            </p>
+            <p>
+              Our goal is to make information about Web3 easier to
+              explore while encouraging responsible and informed
+              interaction with blockchain applications.
+            </p>
+          </div>
+
+          <div class="principles">
+            <div class="principle">
+              <strong>Transparency</strong>
+              <span>Clear information about links and services.</span>
+            </div>
+
+            <div class="principle">
+              <strong>User Awareness</strong>
+              <span>Understand wallet permissions before approving.</span>
+            </div>
+
+            <div class="principle">
+              <strong>Open Exploration</strong>
+              <span>Learn about blockchain and decentralized apps.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="security">
+      <div class="container">
+        <div class="section-title">
+          <h2>Security &amp; User Safety</h2>
+          <p>
+            Protect your wallet and verify every interaction.
+          </p>
+        </div>
+
+        <div class="security">
+          <h3>Stay Safe in Web3</h3>
+          <ul>
+            <li>Never share your wallet recovery phrase or private key.</li>
+            <li>Verify website addresses before connecting your wallet.</li>
+            <li>Read transaction details before signing or approving.</li>
+            <li>Do not interact with a website if your wallet flags it as unsafe.</li>
+          </ul>
+          <p>
+            A secure HTTPS connection alone does not guarantee that
+            a website or smart contract is trustworthy.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <span class="eyebrow">Stay Connected</span>
+          <h2>Discover <span class="gradient">Web3</span></h2>
+          <p>
+            Explore blockchain technology with curiosity,
+            transparency, and care.
+          </p>
+          <a class="button secondary"
+             href="https://github.com/devsidrachain"
+             target="_blank"
+             rel="noopener noreferrer">
+            Visit GitHub ↗
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    DevSidraChain · Web3 Ecosystem
+    <div class="container footer-inner">
+      <span>© 2026 DevSidraChain. All rights reserved.</span>
+      <span>Build · Connect · Explore</span>
+    </div>
   </footer>
 </body>
 </html>
